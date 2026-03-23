@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  api:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      DB_HOST: db
+      DB_USER: root
+      DB_PASS: MyS3cur3P@ss
+      DB_NAME: docker_lab
+
+  db:
+    image: mysql:8
+    environment:
+      MYSQL_ROOT_PASSWORD: MyS3cur3P@ss
+      MYSQL_DATABASE: docker_lab
+    volumes:
+      - db_data:/var/lib/mysql
+
+volumes:
+  db_data:
